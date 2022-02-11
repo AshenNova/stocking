@@ -1,0 +1,15 @@
+<% @ticker = StockQuote::Stock.quote(@stock.ticker) %>
+      <% if !@ticker %>
+        The stock ticker <%= @stock.ticker %> does not exist.
+
+      <% else %>
+          <p><%= @ticker.symbol %></p>
+          <p><%= @ticker.company_name %></p>
+          <p>$<%= number_with_precision(@ticker.latest_price, :precision => 2, :delimiter => ',') %></p>
+          <p>$<%= number_with_precision(@ticker.market_cap, :precision => 2, :delimiter => ',') %></p>
+          <p><%= @ticker.high %></p>
+          <p><%= @ticker.low %></p>
+      <% end %>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>
